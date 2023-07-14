@@ -1,6 +1,7 @@
 package com.suvith.movies;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,14 +10,14 @@ import java.util.Optional;
 
 @Service
 public class MovieService {
+
     @Autowired
-    private MovieRepository movieRepository;
+    private MovieRepository repository;
 
-    public List<Movie> allMovies(){
-    return movieRepository.findAll();
+    public List<Movie> findAllMovies() {
+        return repository.findAll();
     }
-
-    public Optional<Movie> singleMovie(){
-        return movieRepository.findById(id);
+    public Optional<Movie> findMovieByImdbId(String imdbId) {
+        return repository.findMovieByImdbId(imdbId);
     }
 }
